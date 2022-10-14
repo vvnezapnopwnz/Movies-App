@@ -1,0 +1,72 @@
+.ant-card-body {
+    padding: 0!important;
+}
+
+.single-movie {
+    display: flex;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    height: 280px;
+}
+
+.single-movie__img {
+    height: 100%;
+    min-width: 180px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.single-movie__info {
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 450px;
+    flex-grow: 2;
+}
+
+.single-movie__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 6px;
+    color: #000000;
+    margin-right: 30px;
+}
+
+.single-movie__date {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    color: #827E7E;
+    margin-bottom: 8px;
+}
+
+.single-movie__genres {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.genre {
+    background: #FAFAFA;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(0, 0, 0, 0.65);
+    padding: 3px 5px;
+    margin-right: 8px;
+}
+
+.single-movie__description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap:break-word;
+}
