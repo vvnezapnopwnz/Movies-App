@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Offline, Detector } from "react-detect-offline";
 import MovieService from "../../services/movie-service";
 import "./app.css";
 import MovieList from "../movies-list";
@@ -15,9 +16,12 @@ export default class App extends Component {
     this.movieService
       .getResources()
       .then(({ results }) => {
-        return results.map(this.movieService._transformMovieData)
-      }).then((results) => {
-        this.setState({ data: results, status: "success" })
+        return results.map(this.movieService._transformMovieData);
+      })
+      .then((results) => {
+        this.setState({ data: results, status: "success" });
+      }).catch((error) => {
+        this.setState({ status: "error"})
       })
   }
 
@@ -26,9 +30,17 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <div className="container">
-          <MovieList data={data} status={status} />
-        </div>
+        <Detector
+          render={({ online }) => (
+            <div className={online ? "container" : null}>
+              {online ? (
+                <MovieList data={data} status={status} />
+              ) : (
+                <Offline>Only shown offline (surprise!)</Offline>
+              )}
+            </div>
+          )}
+        />
       </div>
     );
   }

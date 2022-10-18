@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Row } from "antd";
+import { Row, Spin, Alert } from "antd";
 import "./movies-list.css";
 import SingleMovie from "../single-movie";
 
@@ -28,13 +28,22 @@ export default class MoviesList extends Component {
   render() {
     const { status } = this.props;
     if (status === "loading") {
-      return <Row />;
+      return  <Spin size="large" />;
     } else if (status === "success") {
       return (
         <Row gutter={[32, 32]} className="movies-list">
           {this.renderCards()}
         </Row>
       );
+    } else {
+      return (
+        <Alert
+        message="Something went wrong"
+        description="Can't get movies"
+        type="error"
+        showIcon
+      />
+      )
     }
   }
 }
