@@ -6,7 +6,15 @@ export default class MovieService {
     this.apiBase = 'https://api.themoviedb.org/3';
   }  
 
-    getResources  = async () => {
+    getResources = async (searching, page = 1) => {
+      if (searching) {
+        const res = await fetch(`${this.apiBase}/search/movie/?query=${searching}&page=${page}&api_key=2f155ce3e1b51e0739a7c8e01279b635`)
+        if(!res.ok) {
+          throw new Error(res.status)
+        }
+        const body = await res.json();
+        return body;
+      }
       const res = await fetch(`${this.apiBase}/search/movie/?query=return&api_key=2f155ce3e1b51e0739a7c8e01279b635`)
       if(!res.ok) {
         throw new Error(res.status)
