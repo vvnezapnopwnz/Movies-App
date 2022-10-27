@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/app';
-import "antd/dist/antd.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <App />
-);
+import { App } from './components/App'
+import 'antd/dist/antd.css'
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)

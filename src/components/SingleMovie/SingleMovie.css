@@ -1,0 +1,129 @@
+.ant-card-body {
+  padding: 0;
+}
+
+.single-movie {
+  display: flex;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.single-movie__img {
+  height: 100%;
+  width: 330px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-movie__info {
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 450px;
+  flex-grow: 2;
+}
+
+.single-movie__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 6px;
+  color: #000000;
+  margin-right: 30px;
+}
+
+.single-movie__date {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #827e7e;
+  margin-bottom: 8px;
+}
+
+.single-movie__genres {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.genre {
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(0, 0, 0, 0.65);
+  padding: 3px 5px;
+  margin-right: 8px;
+  margin-bottom: 4px;
+}
+
+.single-movie__description {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  overflow: hidden;
+}
+
+.single-movie__stars {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: 5px;
+}
+
+.single-movie__stars .ant-rate-star:not(:last-child) {
+  margin-right: auto;
+}
+
+.single-movie__rate {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: 2px solid;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  font-size: 12px;
+  line-height: 26px;
+  text-align: center;
+  color: #000000;
+}
+
+@media (max-width: 991px) {
+  .single-movie__img-wrapper {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    width: 91px;
+    height: auto;
+  }
+
+  .single-movie__info {
+    padding: 10px;
+  }
+
+  .single-movie__header {
+    min-height: 140px;
+  }
+
+  .single-movie__stars {
+    margin-left: 25%;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .single-movie {
+    height: 250px;
+    max-width: 100%;
+  }
+}
