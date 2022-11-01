@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Col, Image, Rate } from 'antd'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
+import GenreContext from '../../context/context'
 import './SingleMovie.css'
-import GenreContext from '../GenresContext/GenresContext'
 
 export default class SingleMovie extends Component {
   constructor() {
@@ -36,14 +37,7 @@ export default class SingleMovie extends Component {
   }
 
   render() {
-    const {
-      title,
-      imgPath,
-      description,
-      releaseDate,
-      voteAverage,
-      rating,
-    } = this.props
+    const { title, imgPath, description, releaseDate, voteAverage, rating } = this.props
     const imgLink = this.imgBase + imgPath
     const image = imgPath ? <Image width="100%" src={imgLink} alt={title} /> : null
 
@@ -60,7 +54,7 @@ export default class SingleMovie extends Component {
               </div>
             </div>
             <div className="single-movie__description">
-              <span>{description}</span>
+              <p>{description}</p>
             </div>
             <Rate
               className="single-movie__stars"
@@ -79,16 +73,14 @@ export default class SingleMovie extends Component {
 }
 
 SingleMovie.propTypes = {
-      movieId: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      imgPath: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
-      voteAverage: PropTypes.number.isRequired,
-      rating: PropTypes.number,
-      genreIds: PropTypes.arrayOf(
-          PropTypes.number.isRequired,
-      ),
+  movieId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  imgPath: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string,
+  voteAverage: PropTypes.number.isRequired,
+  rating: PropTypes.number,
+  genreIds: PropTypes.arrayOf(PropTypes.number.isRequired),
   status: PropTypes.string,
   onMovieRate: PropTypes.func,
 }

@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
+import { Alert, Row, Spin } from 'antd'
 import PropTypes from 'prop-types'
-import { Row, Spin, Alert } from 'antd'
-import './MoviesList.css'
+import React, { Component } from 'react'
+
 import { SingleMovie } from '../SingleMovie'
+import './MoviesList.css'
 
 export default class MoviesList extends Component {
   constructor(props) {
     super(props)
     this.renderCards = () => {
       const { data, onMovieRate } = this.props
+
       return data.map(({ id, title, description, posterPath, releaseDate, genreIds, voteAverage, rating }) => {
         return (
           <SingleMovie
@@ -29,17 +31,32 @@ export default class MoviesList extends Component {
   }
 
   render() {
-    const { status } = this.props
-    if (status === 'loading') {
-      return <Spin size="large" />
-    } else if (status === 'success') {
+    const { status, data } = this.props
+    if (data !== null && data.length === 0) {
       return (
-        <Row gutter={[32, 32]} className="movies-list">
-          {this.renderCards()}
-        </Row>
+        <React.Fragment>
+          <Alert
+            message="Movies results: 0"
+            description="No movies were found within your search, try another"
+            type="info"
+            showIcon
+          />
+        </React.Fragment>
       )
-    } else {
-      return <Alert message="Something went wrong" description="Can't get movies" type="error" showIcon />
+    }
+    switch (status) {
+      case 'error':
+        return <Alert message="Something went wrong" description="Can't get movies" type="error" showIcon />
+      case 'loading':
+        return <Spin size="large" />
+      case 'success':
+        return (
+          <Row gutter={[32, 32]} className="movies-list">
+            {this.renderCards()}
+          </Row>
+        )
+      default:
+        return
     }
   }
 }
@@ -55,7 +72,7 @@ MoviesList.propTypes = {
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string,
       voteAverage: PropTypes.number.isRequired,
       rating: PropTypes.number,
       genres: PropTypes.arrayOf(
@@ -63,8 +80,9 @@ MoviesList.propTypes = {
           id: PropTypes.number.isRequired,
           name: PropTypes.string.isRequired,
         })
-      )
-    })),
+      ),
+    })
+  ),
   status: PropTypes.string,
   onMovieRate: PropTypes.func,
 }

@@ -21,8 +21,7 @@
 
 .single-movie__info {
   padding: 12px 20px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   flex-basis: 450px;
   flex-grow: 2;
 }
@@ -111,10 +110,6 @@
     padding: 10px;
   }
 
-  .single-movie__header {
-    min-height: 140px;
-  }
-
   .single-movie__stars {
     margin-left: 25%;
     margin-right: 5px;
@@ -125,5 +120,11 @@
   .single-movie {
     height: 250px;
     max-width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .ant-image,
+  .ant-image img {
+    height: inherit;
   }
 }

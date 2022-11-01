@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import './Header.css'
-import { Tabs, Input } from 'antd'
+import { Input, Tabs } from 'antd'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
+import './Header.css'
 
 export default class Header extends Component {
   constructor() {

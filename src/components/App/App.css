@@ -12,6 +12,8 @@ body {
   background-color: white;
   margin: 0 auto;
   padding: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 460px) {

@@ -22,6 +22,14 @@
 .ant-tabs {
   width: 900px;
 }
+@media screen and (max-width: 767px) {
+  .search-panel__form {
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    margin: auto;
+  }
+}
 
 @media screen and (max-width: 500px) {
   .ant-tabs {

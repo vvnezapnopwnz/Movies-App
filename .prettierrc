@@ -3,6 +3,9 @@
   "trailingComma": "es5",
   "semi": false,
   "endOfLine": "lf",
-  "printWidth": 120
+  "printWidth": 120,
+  "importOrder": ["^components/(.*)$", "^[./]"],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
 }
- 
+

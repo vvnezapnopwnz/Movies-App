@@ -6,33 +6,28 @@ export default class MovieService {
     this.guest_session_id = null
   }
 
-  getResources = async (searching = 'return', page = 1) => {
+  getResources = async (searching = '', page = 1) => {
     const { results: ratedResults } = await this.getRatedMovies()
 
     const res = await fetch(
-      `${this.apiBase}/search/movie/?query=${searching === '' ? 'return' : searching}&page=${page}&api_key=${
-        process.env.REACT_APP_API_KEY
-      }`
+      `${this.apiBase}/search/movie/?query=${searching}&page=${page}&api_key=${process.env.REACT_APP_API_KEY}`
     )
-    // console.log(searching === '' ? 'return' : searching)
     if (!res.ok) {
       throw new Error(res.status)
     }
     const body = await res.json()
-    console.log({ 'body from res.json()': body })
     function getDifference(array1, array2) {
       return array1.map((object1) => {
         const withVote = array2.find((object2) => object1.title === object2.title)
         return withVote !== undefined ? withVote : object1
       })
     }
-    console.log({ 'console.log(await getDifference)': await getDifference(body.results, ratedResults) })
     const data = await getDifference(body.results, ratedResults)
     return { total_results: body.total_results, page: body.page, results: data }
   }
 
   _transformMovieData = ({ release_date, overview, ...movieData }) => {
-    const trimText = (text) => text.slice(0, 200).split(' ').slice(0, -1).join(' ')
+    const trimText = (text) => text.slice(0, 120).split(' ').slice(0, -1).join(' ')
     const trimmedDesc = trimText(overview)
     const formattedDate = release_date ? format(new Date(release_date), 'MMMM d, yyyy') : null
 
@@ -54,7 +49,6 @@ export default class MovieService {
       throw new Error(res.status)
     }
     const body = await res.json()
-    // console.log(body)
     this.guest_session_id = body.guest_session_id
   }
 
